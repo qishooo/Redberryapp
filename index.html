@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="language" content="ka" />
+	<meta name="Keywords" content="text">
+	<meta name="Description" content="text" >
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Redberry</title>	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+	<style>
+		@font-face{
+ 			font-family: Helvetica Neue;
+			font-weight: normal;
+			src: url("src/fonts/HelveticaNeue.ttc");
+		}
+		:root{
+			font-family: Helvetica Neue;
+		} 
+		*{
+			padding: 0;
+			margin: 0;
+			box-sizing: border-box;
+			font-family: Helvetica Neue;
+			font-weight: normal;
+			border-style: none;
+		}
+		.flex{
+			display: flex;
+		}
+		.flex-flow-column{
+			flex-flow: column;
+		}
+		.nowrap{
+			flex-wrap: nowrap;
+		}
+		.space-between{
+			justify-content: space-between;
+		}
+		.col-75{
+			width: 75%;
+		}
+		.col-60{
+			width: 60%;
+		}
+		.col-40{
+			width: 40%;
+		}
+		.col-25{
+			width: 25%;
+		}
+		.row{
+			width: 100%;
+			max-width: 100%;
+		}
+		.relative{
+			position: relative;
+		}
+		body{
+			font-family: Helvetica Neue;
+			font-size: 16px;
+			color: black;
+		}
+		.content {
+			min-height: 100vh;
+		}
+		button {
+			font-family: Helvetica Neue;
+			cursor: pointer;
+		}
+		#main {
+			padding: 25px 70px 0px 70px;
+			min-height: 100vh;
+			position: relative;
+		}
+		#main .header {
+			padding-bottom: 26px;
+			border-bottom: 1px solid #1A1A1A;
+			position: relative;
+		}
+		#main .header .logo img {
+			width: 236px;
+		}
+		#main .addResume{
+			position: absolute;
+			top: 50%;
+  			left: 50%;
+  			transform: translate(-50%, -50%);
+		}
+		#main .addResume button{
+			background-color: #1A1A1A;
+			padding: 18px 126px;
+			color: #FFFFFF;
+			border-width: 0px;
+			border-radius: 8px;
+			font-family: Helvetica Neue;
+			font-size: 20px;
+			line-height: 100%;
+		}
+		#main .logo2{
+			position: absolute;
+			top: 473px;
+			left: 1076px;
+			opacity: 14%;
+		}
+		#main .logo2 img{
+			width: 299px;
+			height: 299px;
+		}
+		#main .background{
+			background-image: url("src/images/backgrounds.jpg");
+			background-repeat: no-repeat;
+			background-size: cover;
+			min-height: 100vh;
+			width: 100%;
+			height: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			opacity: 52%;
+		}
+		.page{
+			display: flex;
+			flex-wrap: wrap;
+			min-height: 1080px; overflow:hidden;
+		}
+		
+		.pages #info_form{
+			background-color: rgb(249, 249, 249);
+			min-height: 100vh;
+		}
+		.pages #info_form #button_Wrapper{
+			position: absolute;
+			left: 57px;
+			flex-basis:50px;
+		}
+		.pages #info_form #button_Wrapper button{
+			display: block;
+			background-color: #FFFFFF;
+			background-image: url("src/images/Vector.png");
+			background-repeat: no-repeat;
+			background-position: center;
+			width:40px;
+			height: 40px;
+			border-radius: 50%;
+			border-style: none;
+			margin: auto;
+		}
+		.pages #info_form #infos{
+			padding: 45px 150px 0 150px;
+			position: relative;
+			/* flex-basis: 1098px; */
+	 
+			
+		}
+		.pages #info_form #info_right{
+			position: relative;
+			height: auto;
+ 
+		}
+		.pages #info_form #info_right #infowrapper{
+			padding:45px 75px 65px 80px;
+			background-color: #FFFFFF;
+			position: relative;
+			min-height: 100vh;
+		}
+		.pages .personal_info{
+			width: 798px;
+		}
+		.page .form_header{
+			padding-bottom: 12px;
+			border-bottom: 1px solid black;
+			position: relative;
+		}
+		.page .form_header .page_numbers{
+			font-size: 20px;
+			position: absolute;
+			right: 0;
+			top: 0;
+		}
+		.page h1{
+			font-size: 24px;
+			font-weight: bold;
+		}
+		.page #form_container .form_header{
+			margin-bottom: 73px;
+		}
+		.page .row{
+			display: flex;
+			flex-wrap: wrap;
+			margin-bottom: 31px;
+		}
+		.page .row .col-50{
+			 width: 370px;
+		}
+		.page .row .col-100{
+			flex-basis: 100%;
+		}
+		.page #form_container .row input{
+			outline: none;
+			display: inline-block;
+			width: 100%;
+			height: 48px;
+			border: 1px solid #BCBCBC;
+			border-radius: 4px;
+			margin: 8px 0;
+			padding: 14px 16px;
+			font-size: 16px;
+		}
+		.page #form_container .row input:focus{
+			outline: none;
+			border: 1px solid #BCBCBC;
+		}
+		input::placeholder {
+			color: #000000;
+			opacity: 0.6; 
+		}
+		.page #form_container .row .validated{
+			border: 1px solid #98E37E;
+			background: no-repeat scroll;
+			background-position: right 15px center;
+			background-image: url("src/images/validated.png ");
+		}
+		.page #form_container .row input[type="date"].validated{
+			border: 1px solid #98E37E;
+			background: none;
+		}
+		.page #form_container .row select.validated{
+			border: 1px solid #98E37E;
+			background: none;
+		}
+		.page #form_container .row textarea.validated{
+			border: 1px solid #98E37E;
+			background: no-repeat scroll;
+			background-position: 95% center;
+		}		
+		.page #form_container .row .wrong{
+			border: 1px solid #EF5050;
+		}
+		.wrongicon{
+			position: absolute;
+			margin-left: 15px;
+			left: 100%;
+			top: 50%;
+			transform: translate(0%, -50%);
+			display: none;
+		}
+		.page #form_container .row select {
+			display: inline-block;
+			width: 100%;
+			height: 48px;
+			border: 1px solid #BCBCBC;
+			border-radius: 4px;
+			margin: 8px 0;
+			padding: 14px 16px;
+			font-size: 16px;
+		}
+		.page #form_container .row input[type=file]{
+			border-style: none;
+			display: none;
+			width: auto;
+		}
+		.page #form_container .row label{
+			display: inline-block;
+			width: 100%;
+			font-size: 16px;
+			line-height: 21px;
+			font-weight: bold;
+		}
+		.page #form_container .row #filelabel{
+			display: inline;
+			font-size: 18px;
+		}
+		.page #form_container .row #filebtn{
+			 
+			width: 107px;
+			padding: 5px;
+			font-size: 14px;
+			background-color: #0E80BF;
+			color: #FFFFFF;
+			border-radius: 4px;
+			text-align: center;
+			margin-left: 20px;
+
+		}
+		.page #form_container .row p{
+			color: #2E2E2E;
+			font-size: 14px;
+		}
+		.page #form_container .row .line{
+			border-bottom: 1px solid #C1C1C1;
+			height: 1px;
+			width: 100%;
+		}
+		.page #form_container .row textarea{
+			display: inline-block;
+			width: 100%;
+			height: 103px;
+			border: 1px solid #BCBCBC;
+			border-radius: 4px;
+			margin: 8px 0;
+			padding: 14px 16px;
+			resize: none;
+			font-size: 16px;
+		}
+		.page .row input[type=email]{
+			width: 100%;
+		}
+		.page .row .addmoreinput{
+			background-color: #62A1EB;
+			color: #FFFFFF;
+			border-radius: 4px;
+			font-size: 16px;
+			padding: 14px 21px;
+			/* margin-bottom: 85px; */
+		}
+		.page .nav_buttons{
+			justify-content: space-between;
+			min-width: 100%;
+			display: flex;
+		}
+		.page .nav_buttons button{
+			background-color: #6B40E3;
+			color: #FFFFFF;
+			font-size: 16px;
+			padding: 18px 60px;
+			border-style: none;
+			border-radius: 4px;
+		}
+		#prevbtn, #submitbtn{
+			display: none;
+		}
+		#info_right h1{
+			color: #F93B1D;
+			font-size: 34px;
+			font-weight: bold;
+			margin-bottom: 17px;
+		}
+		#info_right h2{
+			color: #F93B1D;
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 15px;
+			margin-top: 24px;
+		}
+		#info_right p{
+			width: 100%;
+			line-height: 21px;
+			font-size: 16px;
+			vertical-align: top;
+			text-transform: lowercase;
+			color: #000000;
+			text-align: justify;
+			margin-bottom: 10px;
+		}
+		#info_right .shownamewrap{
+			margin-bottom: 0;
+		}
+		#info_right .shownamewrap p{
+			font-size: 18px;
+		}
+		#info_right #personalinfshow{
+			width: 100%;
+			overflow: hidden;
+		}
+		#info_right .infshow{
+			margin-bottom: 15px;
+		}
+		#info_right .infshow:last-child{
+			margin-bottom: 50px;
+		}
+		#info_right .infshowrapper{
+			margin-bottom: 0;
+		}
+		#info_right .row{
+			flex-wrap: nowrap;
+		}
+		#info_right #showcvimage{
+			width: 246px;
+			height: 246px;
+			object-fit: cover;
+			border-radius: 50%;
+			 
+		}
+		#info_right p img{
+			width: 17px;
+			height: 17px;
+			vertical-align: middle;
+			margin-right: 11px;
+		}
+		#info_right .line{
+			width: 100%;
+			height: 1px;
+			background-color: #C8C8C8;
+		}
+		#info_right p.showjobdates{
+			color: #909090;
+
+		}
+		#info_right .cornerLogo{
+			position:absolute;
+			bottom: 45px;
+			left:76px;
+		}
+		.focusedform{
+			border-style: none;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="content">
+		<div class="pages" id="pages">
+			<div class="page" id="main">
+				<div class="background">
+				</div>
+				<div class="header">
+					<div class="logo">
+						<img src="src\images\logo_01.png" alt="logo">
+					</div>
+				</div>
+				<div class="logo2">
+					<img src="src\images\logo_02.png" alt="logo">
+				</div>
+				<div class="addResume">
+					<button id="addResumeBtn">რეზიუმეს დამატება</button>
+				</div>
+			</div>
+			<div class="page nowrap" id="info_form">
+				<div id="infos" class="col-60">
+					<div id="button_Wrapper">
+						<button id="buttonToMain"></button>
+					</div>
+					<div id="form_container">
+						<div class="form_header">
+							<h1 id="headertitle">პირადი ინფორმაცია</h1>
+							<div class="page_numbers"> <span id="headerNumber">1</span>  /3</div>
+						</div>
+						<form name="cvinfo" action="" id="usercvform">
+							<!-- start of personal information -->
+							<div id="personal_info" class="formpages">
+								<div class="valueswrapper" id="valueswrapper11">
+									<div class="row space-between">
+										<div class="col-50 relative">
+											<div><label for="fname">სახელი</label></div>
+											<div class="relative">
+												<input type="text" id="fname11" name="firstname" placeholder="ანზორ" required>
+												<img class="wrongicon" src="src/images/wrong.png" alt="wrong icon">
+											</div>
+											<p>მინიმუმ 2 ასო, ქართული ასოები</p>
+										</div>
+										<div class="col-50">
+											<div><label for="lname">გვარი</label></div>
+											<div class="relative">
+												<input  type="text" id="lname11" name="lastname" placeholder="მუმლაძე" required>
+												<img class="wrongicon" src="src/images/wrong.png" alt="wrong icon">
+											</div>
+											<p>მინიმუმ 2 ასო, ქართული ასოები</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-100">
+											<label id="filelabel" for="cvuserimage">პირადი ფოტოს ატვირთვა</label>
+											<label id="filebtn" for="cvuserimage" style="font-weight: normal;">ატვირთვა</label>
+											<input type="file" id="cvuserimage" name="userimage" accept="image/*" required>				
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-100">
+											<label for="cvaboutme">ჩემ შესახებ(არასავალდებულო)</label>
+										</div>
+										<div class="col-100">
+											<textarea id="cvaboutme11" name="aboutme" placeholder="ზოგადი ინფო შენს შესახებ"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-100">
+											<label for="useremail">ელ.ფოსტა</label>
+										</div>
+										<div class="col-100">
+											<div class="relative">
+												<input type="email" id="useremail11" name="email" placeholder="anzorr666@redberry.ge" required>
+												<img class="wrongicon" src="src/images/wrong.png" alt="wrong icon">
+											</div>
+											<p>უნდა მთავრდებოდეს @redberry.ge-ით</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-100">
+											<label for="userphone">მობილური ნომერი</label>
+										</div>
+										<div class="col-100">
+											<div class="relative">
+												<input type="tel" id="userphone11" name="phonenumber" placeholder="+995 551 12 34 56" required>
+												<img class="wrongicon" src="src/images/wrong.png" alt="wrong icon">
+											</div>
+											<p>უნდა აკმაყოფილებდეს ქართული მობილურის ნომრის ფორმატს</p>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- end of personal info -->
+							<!-- start of experience -->
+							<div id="experience" class="formpages">
+								<div class="valueswrapper" id="valueswrapper21">
+									<div class="row space-between">
+										<div class="col-100">
+											<div><label for="jobposition">თანამდებობა</label></div>
+											<div class="relative">
+												<input type="text" id="jobposition" name="jobposition" placeholder="დეველოპერი, დიზაინერი, ა.შ">
+												<img class="wrongicon" src="src/images/wrong.png" alt="wrong icon">
+											</div>
+											<p>მინიმუმ 2 სიმბოლო</p>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-100">
+											<label for="jobemployer">დამსაქმებელი</label>
+										</div>
+										<div class="col-100">
+											<div class="relative">
+												<input type="text" id="jobemployer" name="jobemployer" placeholder="დამსაქმებელი">
+												<img class="wrongicon" src="src/images/wrong.png" alt="wrong icon">
+											</div>
+											
+											<p>მინიმუმ 2 სიმბოლო</p>
+										</div>
+									</div>
+									<div class="row space-between">
+										<div class="col-50">
+											<div><label for="startdate">დაწყების რიცხვი</label></div>
+											<input type="date" id="startdate" name="startdate" placeholder="dddmm / dd / yyyy">
+										</div>
+										<div class="col-50">
+											<div><label for="enddate">დამთავრების რიცხვი</label></div>
+											<input type="date" id="enddate" name="enddate" placeholder="dddmm / dd / yyyy">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-100">
+											<label for="jobdescription">აღწერა</label>
+										</div>
+										<div class="col-100">
+											<textarea id="jobdescription" name="jobdescription" placeholder="როლი თანამდებობაზე და ზოგადი აღწერა"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="line"></div>
+									</div>
+								</div>
+							</div>					
+							<!-- end of experience -->
+							<!-- start of education -->
+							<div id="education" class="formpages">
+								<div class="valueswrapper" id="valueswrapper31">
+									<div class="row space-between">
+										<div class="col-100">
+											<div>
+												<label for="cvschool">სასწავლებელი</label>
+											</div>
+											<div class="relative">
+												<input type="text" id="cvschool" name="school" placeholder="სასწავლებელი">
+												<img class="wrongicon" src="src/images/wrong.png" alt="wrong icon">
+											</div>
+											<p>მინიმუმ 2 სიმბოლო</p>
+										</div>
+									</div>
+									<div class="row space-between">
+										<div class="col-50">
+											<label for="grade">ხარისხი</label>
+											<!-- <input type="text" id="grade" name="grade" placeholder="აირჩიეთ ხარისხი"> -->
+											<select id="grade" name="grade">
+												<option value="" disabled selected>აირჩიეთ ხარისხი</option>
+												<option value="საშუალო სკოლის დიპლომი">საშუალო სკოლის დიპლომი</option>
+												<option value="ზოგადსაგანმანათლებლო დიპლომი">ზოგადსაგანმანათლებლო დიპლომი</option>
+												<option value="ბაკალავრი">ბაკალავრი</option>
+												<option value="მაგისტრი">მაგისტრი</option>
+												<option value="დოქტორი">დოქტორი</option>
+												<option value="ასოცირებული ხარისხ">ასოცირებული ხარისხი</option>
+												<option value="სტუდენტი">სტუდენტი</option>
+												<option value="კოლეჯი (ხარისხის გარეშე)">კოლეჯი (ხარისხის გარეშე)</option>
+												<option value="სხვა">სხვა</option>
+											</select>												
+										</div>
+										<div class="col-50">
+											<label for="cvendofschool">დამთავრების რიცხვი</label>
+											<input type="date" id="cvendofschool" name="endofschool" placeholder="დამსაქმებელი">
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-100">
+											<label for="schooldescription">აღწერა</label>
+										</div>
+										<div class="col-100">
+											<textarea id="schooldescription" name="schooldescription" placeholder="განათლების აღწერა"></textarea>
+										</div>
+									</div>
+									<div class="row">
+										<div class="line"></div>
+									</div>
+								</div>
+							</div>							
+							<!-- end of education -->						
+						</form>
+					</div>
+					<div class="row">
+						<button id="addmoreinput" class="addmoreinput" type="button">მეტი გამოცდილების დამატება</button>
+					</div>
+					<div class="nav_buttons">
+						<div>
+							<button id="prevbtn" class="changepagesbtn" type="button">უკან</button>
+						</div>
+						<div>
+							<button id="nextbtn" class="changepagesbtn" type="button">შემდეგი</button>
+							<button id="submitbtn" class="changepagesbtn" type="submit">დასრულება</button>
+						</div>
+					</div>	
+				</div>
+				<div id="info_right" class="col-40">
+					<!-- ვაგრძელებ აქედან -->
+					<div id="infowrapper">
+							<div class="flex flex-flow-column">
+								<div id="personalinfshow" class="infshow">
+									<div class="infshowrapper flex row space-between ">
+											<div>
+												<div class="shownamewrap">
+													<h1 ><span id="firstname">სახელი</span> <span id="lastname">გვარი</span></h1>
+													<p> <img id="showemailimg" src="src\images\email.png" alt="email"> <span id="email">anzorr666@redberry.ge</span></p>
+													<p> <img id="showtelimg" src="src\images\phone.png" alt="phonenumber"> <span id="phonenumber">+995 597 63 45 16</span></p>
+												</div>
+												<div >
+													<h2>ᲩᲔᲛ ᲨᲔᲡᲐᲮᲔᲑ</h2>
+													<p><span id="aboutme">
+														ძალიან მიყვარს დიზაინის კეთება. დილით ადრე რომ 
+														ავდგები გამამხნევებელი ვარჯიშების მაგიერ დიზაინს ვაკეთებ.
+													</span></p>
+												</div>
+											</div>
+											<div>
+												<span id="userimage" style="display: none;"></span>
+												<img id="showcvimage" src="" alt="showcvimage" title="showcvimage">
+											</div>								
+									</div>
+								</div>
+								<div id="expinfshow" class="infshow">
+									<div class="infshowrapper">
+										<div class="line"></div>
+										<div>
+											<div>
+												<h2>ᲒᲐᲛᲝᲪᲓᲘᲚᲔᲑᲐ</h2>
+												<P><span id="jobposition">React Native Developer</span>, <span id="jobemployer">Microsoft</span></P>
+												<P class="showjobdates"><span id="startdate">2020-09-23</span> - <span id="enddate">2020-09-23</span></P>
+												<p><span id="jobdescription">Experienced Javascript Native Developer 
+													with 5 years in the industry. proficient withreact. Used 
+													problem-solving aptitude to encahge
+													application performance by 14%.created 
+													data visualisation
+													tools and integrated designs.
+												</span></p>
+											</div>
+										</div>								
+									</div>
+								</div>
+								<div id="educinfshow" class="infshow">
+									<div class="infshowrapper">
+										<div class="line"></div>
+										<div>
+											<div>
+												<h2>განათლება</h2>
+												<P><span id="school"></span>, <span id="grade"></span></P>
+												<P class="showjobdates"><span id="endofschool"></span></P>
+												<p><span id="schooldescription">
+												</span></p>
+											</div>
+										</div>								
+									</div>
+								</div>
+						</div>		
+						<div class="cornerLogo" >
+							<img src="src\images\LOGO-12 1.png" alt="logo-12">
+						</div>	
+					</div>					
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+
+		let pages = document.getElementsByClassName("page");
+		let pagesindex = 0;
+		for(let i = 0; i < pages.length; i++){
+			if(i != 0)
+				pages[i].style.display = "none";
+		}
+		document.getElementById("addResumeBtn").addEventListener("click", addresume);
+		document.getElementById("buttonToMain").addEventListener("click", backToMain);
+		function addresume(){
+			document.getElementById("main").style.display = "none";
+			document.getElementById("info_form").style.display = "flex";
+		}
+		function backToMain(){
+			for(let i = 0; i < pages.length; i++){
+				pages[i].style.display = "none";
+			}
+			document.getElementById("main").style.display = "block";
+			localStorage.clear();
+			window.location='index.html';
+		}
+		let formpages = document.getElementsByClassName("formpages");
+		let formpageindex = 0;
+		for(let i = 0; i < formpages.length; i++){
+			if(i != 0)
+			formpages[i].style.display = "none";
+
+		}
+		var headers = ["პირადი ინფო","გამოცდილება","განათლება"];
+		var addmoreinp =["","მეტი გამოცდილების დამატება","სხვა სასწავლებლის დამატება"];  
+		document.getElementById("prevbtn").addEventListener("click", prevbtn);
+		document.getElementById("nextbtn").addEventListener("click", nextbtn);
+		document.getElementById("addmoreinput").innerHTML = "";
+		document.getElementById("addmoreinput").style.display = "none";
+		document.getElementById("addmoreinput").addEventListener("click", addmoreinput);
+		function prevbtn(){
+			changepage(false);
+		}
+		function nextbtn(){
+			changepage(true);
+		}
+		function changepage(a){
+			if(a){
+				if(formpageindex < (formpages.length-1)){
+					formpageindex = formpageindex+1;
+					changeaddmoreinput(formpageindex);
+					for(let i = 0; i < formpages.length; i++){
+						formpages[i].style.display = "none";
+					}
+					formpages[formpageindex].style.display = "block";
+					if(formpageindex > 0){
+						document.getElementById("prevbtn").style.display = "inline-block";
+					}
+					changeHeader(formpageindex);
+					if(formpages.length == (formpageindex+1)){
+						document.getElementById("nextbtn").style.display = "none";
+						document.getElementById("submitbtn").style.display = "inline-block";
+					}
+				}
+			}
+			if(!a && (formpageindex > 0)){
+				formpageindex = formpageindex-1;
+				changeaddmoreinput(formpageindex);
+				for(let i = 0; i < formpages.length; i++){
+						formpages[i].style.display = "none";
+				}				
+				formpages[formpageindex].style.display = "block";
+				if(formpageindex == 0){
+					document.getElementById("prevbtn").style.display = "none";
+				}
+				changeHeader(formpageindex);
+				document.getElementById("nextbtn").style.display = "inline-block";
+				document.getElementById("submitbtn").style.display = "none";
+			}
+		}
+		function changeHeader(i){
+			document.getElementById("headertitle").innerHTML = headers[i];
+			document.getElementById("headerNumber").innerHTML = i+1;
+		}
+		let formpagesarray = document.getElementsByClassName("formpages");
+		// სანამ ფორმის შევსება მოხდება, მანამდე უნდა შეიქმნას ეს ელემენტები, რომ ცარიელი დაემატოს.
+		var xx = document.getElementsByClassName("infshow");
+		let infshowrappers = [];
+		for(let ind of xx){
+			var yy = ind.getElementsByClassName("infshowrapper")[0];
+			var clearspans = yy.getElementsByTagName("span");
+			for(let spans of clearspans){
+				spans.innerHTML = ""; //გავასუფთაოთ შიგთავსი
+			}
+			infshowrappers.push(yy.innerHTML);
+		}
+		if(localStorage.getItem("vwrapperArrLocal") == null){
+			var vwrapperArrLocal = ["valueswrapper11","valueswrapper21","valueswrapper31"];
+			localStorage.setItem("vwrapperArrLocal", vwrapperArrLocal);
+		}
+		else{
+			let str = localStorage.getItem("vwrapperArrLocal");
+			var vwrapperArrLocal = str.split(",");
+		}
+		function addmoreinput(){
+			var x = formpagesarray[formpageindex];
+			var y = x.getElementsByClassName("valueswrapper")[0];
+			var z = document.createElement("div");
+			z.setAttribute("class", "valueswrapper");
+			z.innerHTML = y.innerHTML;
+			let inputs = z.getElementsByTagName("input");
+			let selects = z.getElementsByTagName("textarea");
+			let textareas = z.getElementsByTagName("select");
+			for(let m of inputs){
+				setId(m); 
+				isNeutral(m);
+			}
+			for(let m of selects){
+				setId(m); 
+				isNeutral(m);
+			}
+			for(let m of textareas){
+				setId(m); 
+				isNeutral(m);
+			}  
+			z.id = "valueswrapper"+""+(formpageindex+1)+""+(x.getElementsByClassName("valueswrapper").length+1);
+			vwrapperArrLocal.push(z.id);
+			localStorage.setItem("vwrapperArrLocal", vwrapperArrLocal);
+			console.log(localStorage.getItem("vwrapperArrLocal"));
+			x.appendChild(z);
+			var zz =  document.createElement("div");
+			zz.setAttribute("class", "infshowrapper");				 
+			zz.innerHTML = infshowrappers[formpageindex];
+			xx[formpageindex].appendChild(zz);
+		}
+
+
+
+		// function allvalidated(obj,arr){
+		// 	let inputs = obj.getElementsByTagName("input");
+		// 	let selects = obj.getElementsByTagName("textarea");
+		// 	let istrue = false;
+		// 	for(let m of inputs){
+		// 		if(arr.includes($(m).attr('name')) && !ifhasvalid(m)){
+		// 			return false;
+		// 		}
+		// 		else{
+		// 			istrue = true;
+		// 		}	
+		// 	}
+		// 	for(let m of selects){
+		// 		if(arr.includes($(m).attr('name')) && !ifhasvalid(m)){
+		// 			return false;
+		// 		}
+		// 		else{
+		// 			istrue = true;
+		// 		}	
+		// 	}
+		// 	return istrue;
+		// 	// $(obj).find('input[name="'+m+'"]');		
+ 
+		// }
+		function changeaddmoreinput(i){
+			if((i > 0)){
+				document.getElementById("addmoreinput").innerHTML = addmoreinp[i];
+				document.getElementById("addmoreinput").style.display = "block";
+			}
+			if(i == 0){
+				document.getElementById("addmoreinput").innerHTML = addmoreinp[i];
+				document.getElementById("addmoreinput").style.display = "none";
+			}
+		}
+		// form on change
+		// hide realtime info
+		let infshowhide = document.getElementsByClassName("infshow");
+		for(let infx of infshowhide){
+			infx.style.display = "none";
+		}
+		function findinput(){
+			let actElem = document.activeElement;
+			let actValuesWrapper = actElem.closest(".valueswrapper");
+			//წავშალოთ focusedform კლასი არააქტიურებზე
+			for(let vlw of document.getElementsByClassName("valueswrapper")){
+				vlw.classList.remove("focusedform");
+			}
+			//დავამატოთ focusedform კლასი აქტიურზე
+			if(actValuesWrapper != null){
+				actValuesWrapper.classList.add("focusedform");
+				let actFormpages = actValuesWrapper.closest(".formpages");
+				let valueswrappers = actFormpages.getElementsByClassName("valueswrapper");
+				let i = 0; let str = "";
+			for(let vlw of valueswrappers){
+				str = $(vlw).attr('class');
+				if(str.includes("focusedform")){
+					return i; //დავაბრუნოთ ინდექსი
+				}
+				i++;
+			}				
+			}
+			return 0;
+		}
+		var form = document.querySelector('form');
+		// show realtime info
+		form.addEventListener('input', function() {
+			infshowhide[formpageindex].style.display = "block";
+			let inputarr = [];
+			let x = document.forms["cvinfo"].elements; //form elements
+			//active span elements
+			let spanelements = document.getElementsByClassName("infshow")[formpageindex].getElementsByClassName("infshowrapper")[findinput()].getElementsByTagName("span"); 
+			// alert(spanelements.length);
+			for(let y of x){
+					for(let j = 0; j < spanelements.length; j++){
+						spanattr = $(spanelements[j]).attr('id');
+						inputattr = $(y).attr('name');
+						if(spanattr == inputattr){
+							spanelements[j].innerHTML = y.value;
+						}		
+					}
+			}
+
+		});
+		// დავმალოთ, რომ ცარიელი სურათი არ გამოჩნდეს
+		let userimg = document.getElementById("showcvimage");
+		$(userimg).css("display","none");		
+		// სურათის წაკითხვა
+		document.getElementById('cvuserimage').addEventListener('input', function (event) {
+			let imgfile = event.target.files[0];
+			// FileReader support
+			if (imgfile && FileReader) {
+				var fr = new FileReader();  
+				fr.onload = function () {
+					document.getElementById("showcvimage").style.display = "inline";
+					document.getElementById("showcvimage").src = fr.result;
+ 
+				}
+				fr.readAsDataURL(imgfile);
+			}
+			else {
+				console.log("FileReader Not supported");
+			}
+		});
+		//ვალიდაცია
+		form.addEventListener('input',formvalidation);
+		function formvalidation(){
+			let actElem = document.activeElement;
+			let actElemName = $(actElem).attr('name');
+			let actElemArrayVal = [];
+			let minimumsymbols = ["firstname","lastname","jobposition","jobemployer","school"];
+			let georgiansymbols = ["firstname","lastname"];
+			let emails = ["email"];
+			let geoPhoneNumb = ["phonenumber"];
+			let optional = ["aboutme","jobdescription","startdate","enddate","grade","endofschool","schooldescription"];
+			for(let m of minimumsymbols){
+				if(m == actElemName){
+					let result = checkformin(actElem);
+					actElemArrayVal.push(result);
+				}
+			}
+			for(let m of georgiansymbols){
+				if(m == actElemName){
+					let result = checkforgeorgian(actElem);
+					actElemArrayVal.push(result);
+				}
+			}
+			for(let m of emails){
+				if(m == actElemName){
+					let result = checkforemail(actElem);
+					actElemArrayVal.push(result);
+				}
+			}
+			for(let m of geoPhoneNumb){
+				if(m == actElemName){
+					let result = checkforPhone(actElem);
+					actElemArrayVal.push(result);
+				}
+			}
+			// შევამოწმოთ თუ ობიექტზე ყვეალ პირობა სრულდება
+			for(let iftrue of actElemArrayVal){
+				if(actElem.value == ""){
+					isNeutral(actElem);
+					break;
+				}
+				if(!iftrue){
+					isNotValid(actElem)
+					break;
+				}
+				else{
+					isValid(actElem);
+				}
+			}
+			//check for textarea, select, optional input
+			for(let m of optional){
+				if(m == actElemName){
+					if(actElem.value){
+					isValid(actElem);
+					break;
+					}
+					else{
+						isNeutral(actElem);	
+					}				
+				}
+			}
+		}
+		function checkformin(actElem){
+				let length = actElem.value.length;
+				if(length < 2){
+					return false;
+				}
+				else{
+					return true;
+				}
+		}
+		function checkforgeorgian(actElem){
+			let strinp = actElem.value;
+			for(let i = 0; i < strinp.length; i++){
+				let charcode = strinp.charCodeAt(i);
+				if((charcode < 4304) || (charcode > 4336)){
+					return false;
+				}
+			}
+			return true;	
+		}
+		function checkforemail(actElem){
+			let strtemp = actElem.value; 
+			strtemp = strtemp.trim();
+			let spaces = strtemp.includes(" ");
+			let arr =  strtemp.match(/@/g);
+			if(arr != null){
+				arr = arr.length != 1;
+			}	
+			strtemp = strtemp.slice(-12);
+			if(strtemp != "@redberry.ge" || arr || spaces){
+				return false;
+			}
+			else{
+				return true;
+			}
+		}
+		function checkforPhone(actElem){
+			let strtemp = actElem.value; 
+			strtemp = strtemp.trim();  
+			let callingCode = strtemp.slice(0,4) == "+995";
+			let numberLength = strtemp.length == 13; 
+			let isNumb = strtemp.slice(1);
+			isNumb = isNaN(isNumb);
+			if(callingCode && numberLength && (!isNumb)){
+				return true;
+			}
+			else
+				return false;
+		}
+		function checkOptional(actElem){
+			if(actElem.value != ""){
+				return true;
+			}
+			return true;
+		}
+		function isValid(obj){
+			$(obj).removeClass("wrong");
+			$(obj).addClass("validated");
+			$(obj).next(".wrongicon").css( "display", "none" );
+		}
+		function isNotValid(obj){
+			$(obj).removeClass("validated");
+			$(obj).addClass("wrong");
+			$(obj).next(".wrongicon").css( "display", "inline" );
+		}	
+		function isNeutral(obj){
+			$(obj).removeClass("wrong");
+			$(obj).removeClass("validated");
+			$(obj).next(".wrongicon").css( "display", "none" );
+		}
+		// მივანიჭოთ ახალ დამატებულ ფორმის ელემენტებს უნიკალური აიდები გვერდის და valueswrapper  ინდექსის მიხედვით
+		function setId(m){
+			let newid = m.id;
+			let i = formpageindex+1;
+			let j = formpages[formpageindex].getElementsByClassName("valueswrapper");
+			newid += i+""+(j.length+1);
+			m.id = newid;
+		} 
+		// function ifhasvalid(obj){
+		// 	return $(obj).hasClass("validated");
+		// }
+
+		// შევინახოთ form ის ელემენტები აკრეფისას
+		form.addEventListener("input", function(){
+			let actElem = document.activeElement;
+			localStorage.setItem(actElem.id, actElem.value);
+			console.log("storage :"+actElem.id+":"+ localStorage.getItem(actElem.id));
+		});
+		// readStorage();
+		// function readStorage(){
+		// 	let getValuesWrappers = localStorage.getItem("vwrapperArrLocal");
+		// 	let VWR = getValuesWrappers.split(",");
+		// 	alert(VWR);
+		// 	VWR = VWR.slice(3);
+		// 	let allFormElements = form.elements;
+			
+		// 	let x = document.getElementsByClassName("formpages");
+		// 	for(let m of allFormElements){
+		// 		console.log("id : "+m.id);
+		// 	}
+		// 	if(VWR.length != 3){
+		// 		addValueswrapper(x,VWR);
+
+		// 	}
+		// }
+		// function addValueswrapper(formp,ValWrappers){
+		// 	let ift = 0;
+
+		// 		for(let n of ValWrappers){
+		// 			ift = n.slice(13,14);
+
+		// 				var y = formp[2].getElementsByClassName("valueswrapper")[0];
+		// 				var z = document.createElement("div");
+		// 				z.setAttribute("class", "valueswrapper");
+		// 				z.innerHTML = y.innerHTML;
+		// 				let inputs = z.getElementsByTagName("input");
+		// 				let selects = z.getElementsByTagName("textarea");
+		// 				let textareas = z.getElementsByTagName("select");
+		// 				for(let k of inputs){
+		// 					addid(formp[ift],k,ift);
+		// 					isNeutral(k);
+		// 				}
+		// 				for(let k of selects){
+		// 					addid(formp[ift],k,ift);
+		// 					isNeutral(k);
+		// 				}
+		// 				for(let k of textareas){
+		// 					addid(formp[ift],k,ift);
+		// 					isNeutral(k);
+		// 				} 
+		// 				z.id = "valueswrapper"+""+(ift)+""+(m.getElementsByClassName("valueswrapper").length+1);
+		// 				m.appendChild(z);
+		// 				// var zz =  document.createElement("div");
+		// 				// zz.setAttribute("class", "infshowrapper");
+		// 				// var mm = document.getElementsByClassName("infshow")
+		// 				// zz.innerHTML = infshowrappers[count-1];
+		// 				// mm[count].appendChild(zz);
+
+		// 		}
+ 
+		// }
+		// function addid(m,k,count){
+		// 	let newid = k.id;
+		// 	let i = count;
+		// 	let j = m.getElementsByClassName("valueswrapper");
+		// 	newid += i+""+(j.length+1);
+		// 	k.id = newid;
+			 
+		// }
+	</script>
+</body>
+</html>
